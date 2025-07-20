@@ -11,7 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 		"com.FilmProject.dto",
 		"com.FilmProject.utility",
 		"com.FilmProject.config",
-		"com.FilmProject.exception"
+		"com.FilmProject.exception",
+		"com.FilmProject.security"
 		})
 public class FilmProjectApplication {
 

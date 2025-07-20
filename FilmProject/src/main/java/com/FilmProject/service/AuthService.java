@@ -11,18 +11,21 @@ import com.FilmProject.exception.InvalidCredentialsException;
 import com.FilmProject.exception.InvalidCredentialsException.TYPE;
 import com.FilmProject.model.KullaniciEntity;
 import com.FilmProject.repository.KullaniciRepository;
+import com.FilmProject.utility.JwtUtil;
 
 @Service
 public class AuthService {
 	private final KullaniciRepository kullaniciRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final JwtUtil jwtUtil;
 	
-	public AuthService(KullaniciRepository kullaniciRepository, PasswordEncoder passwordEncoder) {
+	public AuthService(KullaniciRepository kullaniciRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
 		this.kullaniciRepository = kullaniciRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.jwtUtil = jwtUtil;
 	}
 	
-	public void login(LoginRequestDTO dto) {
+	public String login(LoginRequestDTO dto) {
 		Optional<KullaniciEntity> kullaniciOpt = dto.getUsernameOrEmail().contains("@") 
 																		?
 														kullaniciRepository.findByEmail(dto.getUsernameOrEmail())
@@ -35,5 +38,7 @@ public class AuthService {
 		
 		if (!passwordEncoder.matches(dto.getPassword(), kullaniciEntity.getSifre())) 
 			throw new InvalidCredentialsException(TYPE.PASSWORD);
+		
+		return jwtUtil.generateToken(kullaniciEntity);
 	}
 }
