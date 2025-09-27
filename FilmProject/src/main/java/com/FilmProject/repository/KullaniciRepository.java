@@ -18,4 +18,5 @@ public interface KullaniciRepository extends JpaRepository<KullaniciEntity, Inte
 	Optional<KullaniciEntity> findByEmail(String email);
 	
 	Optional<KullaniciEntity> findByKullaniciAdi(String kullaniciAdi);
+	
 }

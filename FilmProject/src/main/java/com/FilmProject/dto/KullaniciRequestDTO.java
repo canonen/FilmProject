@@ -18,26 +18,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class KullaniciRequestDTO {
 	
-	@NotBlank
+	@NotBlank(message = "'adi' field must be filled")
 	private String adi;
 	
-	@NotBlank
+	@NotBlank(message = "'soyadi' field must be filled")
 	private String soyadi;
 	
-	@NotBlank
+	@NotBlank(message = "'kullaniciAdi' field must be filled")
 	private String kullaniciAdi;
 	
 	@Email
-	@NotBlank
+	@NotBlank(message = "'email' field must be filled")
 	private String email;
 	
 	@Size(min = 6, max = 15)
 	private String sifre;
 	
-	@NotNull
+	@NotNull(message = "'rol' field must be filled")
     private Role rol;
 	
-	@NotNull 
+	@NotNull(message = "'dogumTarihi' field must be filled")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dogumTarihi;
 	

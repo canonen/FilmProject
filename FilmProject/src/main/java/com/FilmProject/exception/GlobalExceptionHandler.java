@@ -38,10 +38,10 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ErrorModel> handleInvalidCredentialsException(InvalidCredentialsException ex){
 		ErrorModel errorModel = new ErrorModel(
 				LocalDateTime.now(),
-				HttpStatus.BAD_REQUEST.value(),
+				HttpStatus.UNAUTHORIZED.value(),
 				ex.getType().getCode(),
 				ex.getType().getMessage()
 				);
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorModel);
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorModel);
 	}
 }

@@ -53,5 +53,10 @@ public class KullaniciServiceImpl extends BaseServiceImpl implements KullaniciSe
 		
 		kullaniciRepository.save(kullanici);
 	}
-	
+
+	@Override
+	public KullaniciEntity findByKullaniciAdi(String userName) {
+		return kullaniciRepository.findByKullaniciAdi(userName).orElse(null);
+	}
+
 }
