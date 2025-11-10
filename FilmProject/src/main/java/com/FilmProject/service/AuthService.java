@@ -25,20 +25,25 @@ public class AuthService {
 		this.jwtUtil = jwtUtil;
 	}
 	
-	public String login(LoginRequestDTO dto) {
+	public KullaniciEntity getKullaniciFromLoginRequestDTO(LoginRequestDTO dto) {
 		Optional<KullaniciEntity> kullaniciOpt = dto.getUsernameOrEmail().contains("@") 
-																		?
-														kullaniciRepository.findByEmail(dto.getUsernameOrEmail())
-																		:
-														kullaniciRepository.findByKullaniciAdi(dto.getUsernameOrEmail());
+				?
+				kullaniciRepository.findByEmail(dto.getUsernameOrEmail())
+								:
+				kullaniciRepository.findByKullaniciAdi(dto.getUsernameOrEmail());
+
+		return kullaniciOpt.orElseGet(null);
+	}
+	
+	public String login(LoginRequestDTO dto) {
+		KullaniciEntity kullanici = getKullaniciFromLoginRequestDTO(dto);
+
+		if (kullanici == null) 
+			throw new InvalidCredentialsException(TYPE.USERNAME_OR_EMAIL);
 		
-		KullaniciEntity kullaniciEntity = kullaniciOpt
-				.orElseThrow(() -> new InvalidCredentialsException(TYPE.USERNAME_OR_EMAIL));
-		
-		
-		if (!passwordEncoder.matches(dto.getPassword(), kullaniciEntity.getSifre())) 
+		if (!passwordEncoder.matches(dto.getPassword(), kullanici.getSifre())) 
 			throw new InvalidCredentialsException(TYPE.PASSWORD);
 		
-		return jwtUtil.generateToken(kullaniciEntity);
+		return jwtUtil.generateToken(kullanici);
 	}
 }

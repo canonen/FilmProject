@@ -18,14 +18,13 @@ public class KullaniciResponseDTO extends BaseDTO{
 	private String soyadi;
 	private String kullaniciAdi;
 	private String email;
-	private String sifre;
 	private LocalDateTime olusturmaZamani;
+	private String role;
 	
 	public KullaniciResponseDTO(KullaniciEntity kullanici) {
 		this.adi = kullanici.getAdi();
 		this.soyadi = kullanici.getSoyadi();
 		this.email = kullanici.getEmail();
-		this.sifre = kullanici.getSifre();
 		this.olusturmaZamani = kullanici.getOlusturmaZamani();
 	}
 }

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class YonetmenResponseDTO extends BaseDTO {
+	private int id;
 	private String adi;
 	private String soyadi;
 	

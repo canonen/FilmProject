@@ -12,7 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 		"com.FilmProject.utility",
 		"com.FilmProject.config",
 		"com.FilmProject.exception",
-		"com.FilmProject.security"
+		"com.FilmProject.security",
+		"com.FilmProject.mapper",
 		})
 public class FilmProjectApplication {
 

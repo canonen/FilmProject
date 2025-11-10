@@ -10,6 +10,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -60,15 +61,15 @@ public class KullaniciEntity extends BaseEntity{
 	@Column(name = OLUSTURMA_ZAMANI)
 	private LocalDateTime olusturmaZamani;
 	
-	@OneToMany(mappedBy = "kullanici", orphanRemoval = false)
+	@OneToMany(mappedBy = "kullanici", orphanRemoval = false, fetch = FetchType.EAGER)
 	private List<FavoriFilmEntity> favoriFilmler;
 	
-	@OneToMany(mappedBy = "kullanici", orphanRemoval = false)
+	@OneToMany(mappedBy = "kullanici", orphanRemoval = false, fetch = FetchType.EAGER)
 	private List<FilmBegeniEntity> filmBegeniler;
 	
-	@OneToMany(mappedBy = "kullanici", orphanRemoval = false)
+	@OneToMany(mappedBy = "kullanici", orphanRemoval = false, fetch = FetchType.EAGER)
 	private List<FilmIzlenmeEntity> filmIzlenmeler;
 	
-	@OneToMany(mappedBy = "kullanici", orphanRemoval = false)
+	@OneToMany(mappedBy = "kullanici", orphanRemoval = false, fetch = FetchType.EAGER)
 	private List<YorumEntity> yorumlar;
 }

@@ -42,7 +42,7 @@ public class FilmEntity extends BaseEntity {
 	@Column(name = YAYIN_TARIHI)
 	private Date yayinTarihi;
 	
- 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+ 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = YONETMEN_ID)
     private YonetmenEntity yonetmen;
 	

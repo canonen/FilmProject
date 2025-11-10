@@ -59,17 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			
 			if (jwtUtil.isTokenValid(jwt, kullanici)) {
 				
-				/*UsernamePasswordAuthenticationToken → Spring Security’nin kullanıcı temsilcisi.
-
-					parametre → kim? (kullanici)
-					
-					parametre → şifre (burada null çünkü doğrulama işini JWT yaptı).
-					
-					parametre → kullanıcının rolleri.
-				*/
-				
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(kullanici, null, List.of(new SimpleGrantedAuthority("ROLE_" + kullanici.getRole().name())));
-				//Kullanıcının IP adresi, tarayıcı bilgisi gibi ekstra detayları ekler.
 				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				
 				SecurityContextHolder.getContext().setAuthentication(authToken);

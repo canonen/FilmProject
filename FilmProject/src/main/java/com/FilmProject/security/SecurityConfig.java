@@ -32,6 +32,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // JWT olduğu için session yok
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll() // login, register herkese açık
+                .requestMatchers("/api/film/recent-movies").permitAll() // 🔥 bunu ekle
                 .anyRequest().authenticated() // diğer tüm endpointler JWT ister
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

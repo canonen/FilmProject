@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import axios from "axios";
 
-function LoginPage(){
+function LoginPage({setUser}){
 
   const navigate = useNavigate();
 
@@ -32,8 +32,11 @@ function LoginPage(){
 
     try {
       const response = await axios.post("http://localhost:8080/api/auth/login", formData, {withCredentials:true})
-      if(response.status == 200) //Success
+      //Success
+      if(response.status == 200) {
         navigate("/")
+        setUser(response.data)
+      }
 
     } catch (error) {
       setShowWarningMessage(true);
