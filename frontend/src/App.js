@@ -27,6 +27,7 @@ function App() {
           <Route path="/login" element={user ? <Navigate to = "/" /> : <LoginPage setUser = {setUser} />} />
           <Route path="/register" element={user ? <Navigate to = "/" /> : <RegisterPage />} />
           <Route path="/new-movies" element={<FilmList />} />
+          <Route path="/film/:id" element= {<FilmDetail/>} />
         </Routes>
       </div>
     </Router>
