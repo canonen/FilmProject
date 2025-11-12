@@ -11,4 +11,6 @@ public interface FilmService {
 
 	public List<FilmResponseDTO> getRecentMovies(int page, int size);
 	
+	public FilmResponseDTO getMovie(int id);
+	
 }

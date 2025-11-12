@@ -3,11 +3,13 @@ package com.FilmProject.exception;
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.FilmProject.model.ErrorModel;
+import com.FilmProject.utility.StringLabelRepo;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -43,5 +45,17 @@ public class GlobalExceptionHandler {
 				ex.getType().getMessage()
 				);
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorModel);
+	}
+	
+	@ExceptionHandler(MovieNotFoundException.class)
+	public ResponseEntity<ErrorModel> handleMovieNotFoundException(MovieNotFoundException ex){
+		ErrorModel errorModel = new ErrorModel(
+				LocalDateTime.now(),
+				HttpStatus.NOT_FOUND.value(),
+				"MOVIE_NOT_FOUND",
+				ex.getMessage()
+				);		
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorModel);
 	}
 }

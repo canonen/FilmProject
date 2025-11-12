@@ -9,5 +9,6 @@ public class StringLabelRepo {
 	public static final String SUCCESSFULLY_REGISTERED = "Başarıyla kayıt oldunuz.";
 	public static final String SUCCESSFULLY_LOGGED_IN = "Başarıyla giriş yaptınız.";
 	public static final String SUCCESSFULLY_LOGGED_OUT = "Başarıyla çıkış yaptınız.";
+	public static final String MOVIE_NOT_FOUND = "Aradığınız film bulunamadı.";
 	
 }
